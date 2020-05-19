@@ -37,15 +37,15 @@ Dada a vulnerabilidade de uma senha mestra, é interessante propor um gerenciado
 
 Grandes sistemas já adotaram esta maneira de autenticação, como o Whatsapp Web [4], onde o usuário pareia seu aplicativo do Whatsapp no dispositivo móvel com o site, em um computador, através de um QR Code (podendo escolher se salva a seção no computador para não ter que parear das proximas vezes), e após feito isso, enquanto o celular estiver disponível, o usuário poderá continuar mexendo na versão Web do aplicativo, caso por qualquer motivo o celular perca a conexão, a seção é encerrada imediatamente.
 
-### 1.1 Motivação
-Os problemas mais comuns da autenticação de senhas como o grande número de senhas por usuários, dificuldade de memorização e dificuldade associar uma senha com uma conta em específico levam os usuários a decisões inseguras, como escolher senhas fáceis de lembrar, o que as tornam também faceis de decifrar por invasores, reutilizar senhas em multiplas contas, e escreve-las em algum lugar físico [3]; E um gerenciador de senhas consegue previnir que estes problemas venham a acontecer.
-
-Já existem muitos sistemas de controle de senha no mercado, como o Dashlane, RoboForm, LasPass, Keeper e CyberArk, que investem bastante na criptografia do armazenamento de seus dados e na autenticação do usuário no sistema tomam medidas inocentes [1], não prevendo um dos principios chaves do gerenciador de senhas, esquecimento ou ma elaboração da senha mestra para o sistema, e não se preparando para um caso de furto enquanto a seção da aplicação está ativa.
-
-### 1.2 Objetivos
+### 1.1 Objetivos
 Este projeto visa o desenvolvimento de um software onde os usuários poderão guardar e gerar senhas randomizadas e complexas para que a segurança de suas informações não seja dependente de sua memorização ou de um meio físico.
 
 A autenticação do usuário para entrar neste gerenciador terá uma abordagem não tradicional, utilizando dois dispositivos independentes, pareados e conectados simultâneamente para que seja permitido para o usuário o acesso e a escrita de suas informações.
+
+### 1.2 Motivação
+Os problemas mais comuns da autenticação de senhas como o grande número de senhas por usuários, dificuldade de memorização e dificuldade associar uma senha com uma conta em específico levam os usuários a decisões inseguras, como escolher senhas fáceis de lembrar, o que as tornam também faceis de decifrar por invasores, reutilizar senhas em multiplas contas, e escreve-las em algum lugar físico [3]; E um gerenciador de senhas consegue previnir que estes problemas venham a acontecer.
+
+Já existem muitos sistemas de controle de senha no mercado, como o Dashlane, RoboForm, LasPass, Keeper e CyberArk, que investem bastante na criptografia do armazenamento de seus dados e na autenticação do usuário no sistema tomam medidas inocentes [1], não prevendo um dos principios chaves do gerenciador de senhas, esquecimento ou ma elaboração da senha mestra para o sistema, e não se preparando para um caso de furto enquanto a seção da aplicação está ativa.
 
 ## Bibliografia
 
