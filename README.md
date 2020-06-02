@@ -47,6 +47,30 @@ Os problemas mais comuns da autenticação de senhas como o grande número de se
 
 Já existem muitos sistemas de controle de senha no mercado, como o Dashlane, RoboForm, LasPass, Keeper e CyberArk, que investem bastante na criptografia do armazenamento de seus dados e na autenticação do usuário no sistema tomam medidas inocentes [1], não prevendo um dos principios chaves do gerenciador de senhas, esquecimento ou ma elaboração da senha mestra para o sistema, e não se preparando para um caso de furto enquanto a seção da aplicação está ativa.
 
+## 2. Fundamentação tecnica
+
+Como destacado por McCarney, a arquitetura prevendo a necessidade de um pareamento entre dispositivos para ser possivel a conexão é um sistema que protege o usuario no caso de um roubo de dispositivo, no sistema em contexto são necessárias três aplicações diferentes, sendo elas: a aplicação android, o website e a extensão de navegador.
+
+### 2.1 Aplicativo Android
+Esta aplicação servirá como a principal, colocando nos termos definidos por McCarney, ela será o Gerenciador e a Carteira de senhas, ou seja, neste aplicativo é onde serão gerenciadas e guardadas as senhas, e nele é o unico lugar onde tais informações serão trocadas com o servidor. 
+
+Este aplicativo será uma WebView construida utilizando a ferramenta Ionic, que tem como diferencial o poder de construir uma aplicação com o poder de um aplicativo nativo android, porém com as linguagens da web: HTML, CSS e Javascript. Além de serem linguagens que possuem uma grande comunidade, o uso desta ferramenta permite a reutilização do codigo com a aplicação web.
+
+### 2.2 Website
+Esta aplicação é o diferencial deste projeto, ele será uma aplicação que fará bastante o uso de websockets para estabelecer uma constante conexão com a aplicação android, uma vez que não será possivel acessa-la sem que o aplicativo no celular esteja disponivel.
+
+Este website, feito com o framework Vue.js, não buscará informações diretamente do servidor, mas sim da aplicação android, desta maneira é garantida uma maior confidencialidade e um maior controle sobre por onde as informações estão vindo, e garantindo também que a aplicação só poderá ser usada com o dispositivo movel pareado.
+
+### 2.3 Extensão do Google Chrome
+A extensão trabalha para a comodidade do usuário que terá ela disponivel sempre que necessário a busca das credenciais. 
+
+Assim como o website, ela só poderá ser utilizada enquanto o aplicativo android estiver conectado e disponivel, pois ela também buscara as informações dele.
+
+Esta ferramenta será construída utilizando também HTML, CSS e Javascript, além de ser necessário um bom conhecimento das estruturas JSON e XML.
+
+
+Todas as aplicações são feitas a partir de uma arquitetura RESTful, uma padronização adotada para facilitar o desenvolvimento e acesso de informações entre servidor e software.
+
 ## Bibliografia
 
 - [1] J. Bonneau, C. Herley, P. C. van Oorschot, and F. Stajano. The quest to replace passwords: a framework for comparative evaluation of web authentication schemes. In IEEE Symposium on Security and Privacy, 2012.
