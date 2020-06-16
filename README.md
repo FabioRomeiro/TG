@@ -49,19 +49,38 @@ Já existem muitos sistemas de controle de senha no mercado, como o Dashlane, Ro
 
 ## 2. Fundamentação tecnica
 
-Como destacado por McCarney, a arquitetura prevendo a necessidade de um pareamento entre dispositivos para ser possivel a conexão é um sistema que protege o usuario no caso de um roubo de dispositivo, no sistema em contexto são necessárias três aplicações diferentes, sendo elas: a aplicação android, o website e a extensão de navegador.
+Na base do entendimento tecnico para este projeto se destacam dois temas recorrentes: Conceito de Carteira e Gerenciador, e Criptografia simétrica e assimétrica.
 
-### 2.1 Aplicativo Android
-Esta aplicação servirá como a principal, colocando nos termos definidos por McCarney, ela será o Gerenciador e a Carteira de senhas, ou seja, neste aplicativo é onde serão gerenciadas e guardadas as senhas, e nele é o unico lugar onde tais informações serão trocadas com o servidor. 
+Para alcançar o resultado final foram utilizadas ferramentas e arquiteturas de desenvolvimento web como: RESTful APIs, Frameworks Front-end e WebViews.
+
+### 2.1 Conceito de Carteira e Gerenciador
+Esta arquitetura para gerenciador de senha, proposto por McCarney [1] em seu estudo posteriormente referenciado, permite criar uma dependencia entre dois dispositivos, forçando-os estarem conectados simultaneamente para funcionar. Em seu trabalho 
+
+[IMAGEM]
+
+Nesta arquitetura, a aplicação no celular serve como a carteira de senhas, ou seja, o local onde todas as senhas e informações do usuário estarão guardadas e criptografadas, de maneira que o aplicativo apenas a armazene mas não consiga ler - este conceito será aprofundado no tópico 2.2; E a aplicação desktop serve como um gerenciador, um lugar onde não há informações armazenadas, mas tem a capacidade de busca-las da carteira e, diferentemente do local de armazenamento, le-las e exibi-las para o usuário autenticado.
+
+### 2.2 Criptografia simétrica e assimétrica
+Como definido por Gustavus J. Simmons, do Sandra Laboratories, New Mexico, no artigo Symmetric and Asymmetric Encryption [5], a criptografia simétrica é uma maneira eficiente de trocar informação de maneira sigilosa, onde o emissor envia, através de um canal seguro, para o receptor, uma chave secreta que permite que uma mensagem enviada de um para o outro seja decriptada e lida.
+
+Enquanto a criptografia assimétrica, segundo Simmons, são criadas duas chaves, uma privada e uma pública, sendo a privada apenas sua, e a pública disponível para qualquer indivíduo. Uma chave completa a outra, desta maneira, o emissor assina sua mensagem com a chave privada, confirmando que foi ele mesmo quem a enviou, e o receptor com a chave pública consegue decriptar a mensagem, porém não assinar no nome do emissor, pois apenas com a privada que isso é possível.
+
+
+## 3. Desenvolvimento
+
+A arquitetura prevendo a necessidade de um pareamento entre dispositivos para ser possivel a conexão é um sistema que protege o usuario no caso de um roubo de dispositivo, no sistema em contexto são necessárias três aplicações diferentes, sendo elas: a aplicação android, o website e a extensão de navegador.
+
+### 3.1 Aplicativo Android
+Esta aplicação servirá como a principal, ela será o Gerenciador e a Carteira de senhas, ou seja, neste aplicativo é onde serão gerenciadas e guardadas as senhas, e nele é o unico lugar onde tais informações serão trocadas com o servidor. 
 
 Este aplicativo será uma WebView construida utilizando a ferramenta Ionic, que tem como diferencial o poder de construir uma aplicação com o poder de um aplicativo nativo android, porém com as linguagens da web: HTML, CSS e Javascript. Além de serem linguagens que possuem uma grande comunidade, o uso desta ferramenta permite a reutilização do codigo com a aplicação web.
 
-### 2.2 Website
+### 3.2 Website
 Esta aplicação é o diferencial deste projeto, ele será uma aplicação que fará bastante o uso de websockets para estabelecer uma constante conexão com a aplicação android, uma vez que não será possivel acessa-la sem que o aplicativo no celular esteja disponivel.
 
 Este website, feito com o framework Vue.js, não buscará informações diretamente do servidor, mas sim da aplicação android, desta maneira é garantida uma maior confidencialidade e um maior controle sobre por onde as informações estão vindo, e garantindo também que a aplicação só poderá ser usada com o dispositivo movel pareado.
 
-### 2.3 Extensão do Google Chrome
+### 3.3 Extensão do Google Chrome
 A extensão trabalha para a comodidade do usuário que terá ela disponivel sempre que necessário a busca das credenciais. 
 
 Assim como o website, ela só poderá ser utilizada enquanto o aplicativo android estiver conectado e disponivel, pois ela também buscara as informações dele.
@@ -77,3 +96,4 @@ Todas as aplicações são feitas a partir de uma arquitetura RESTful, uma padro
 - [2] https://dl.acm.org/doi/10.1145/2420950.2420964
 - [3] https://dl.acm.org/doi/pdf/10.1145/2683467.2683471
 - [4] https://web.whatsapp.com/
+- [5] https://dl.acm.org/doi/pdf/10.1145/356789.356793
